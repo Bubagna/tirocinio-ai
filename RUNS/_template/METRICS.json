@@ -5,11 +5,18 @@
   "prompt_count": 0,
   "manual_edits": 0,
   "failed_steps": 0,
+
+  "dod_pass": false,
+  "local_ok": false,
+  "docker_ok": false,
+
   "loc_total": 0,
   "deps_count": 0,
   "devDeps_count": 0,
+
+  "lint_pass": false,
   "tests_present": false,
   "tests_pass": false,
-  "docker_ok": false,
+
   "notes": []
 }
