@@ -1,0 +1,15 @@
+{
+  "tool": "",
+  "run_id": "",
+  "timestamp": "",
+  "prompt_count": 0,
+  "manual_edits": 0,
+  "failed_steps": 0,
+  "loc_total": 0,
+  "deps_count": 0,
+  "devDeps_count": 0,
+  "tests_present": false,
+  "tests_pass": false,
+  "docker_ok": false,
+  "notes": []
+}
