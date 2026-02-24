@@ -1,0 +1,9 @@
+{
+  "name": "tirocinio-ai-benchmark",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "loc": "bash TOOLS/scripts/count_loc.sh APP",
+    "deps": "node TOOLS/scripts/extract_deps.js APP"
+  }
+}
