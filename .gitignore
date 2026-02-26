@@ -6,3 +6,4 @@ build/
 coverage/
 .DS_Store
 APP/data/raw/
+.venv/
