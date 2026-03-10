@@ -6,9 +6,9 @@ Una run è considerata COMPLETATA quando tutte le condizioni sotto sono soddisfa
 
 ## 1. Funzionalità
 
-[ ] L'app scarica correttamente i report Copilot via API
-[ ] Il token è letto da variabile d'ambiente
-[ ] I dati vengono salvati (MongoDB o filesystem strutturato)
+[ ] L'app importa correttamente i report Copilot da file JSON in `RAW_DATA_DIR` (senza chiamate HTTP esterne)  
+[ ] Se `RAW_DATA_DIR` non esiste l'app fallisce con errore chiaro (exit code != 0)  
+[ ] L’import è idempotente (rilancio non crea duplicati)  
 [ ] Backend espone almeno 3 endpoint funzionanti
 [ ] Dashboard mostra:
     - Periodo report
@@ -25,6 +25,7 @@ Una run è considerata COMPLETATA quando tutte le condizioni sotto sono soddisfa
 [ ] npm start avvia il server
 [ ] docker compose up avvia app + database
 [ ] L'app è accessibile da browser
+[ ] L’app funziona anche senza accesso internet (dataset locale + Mongo)
 
 ---
 

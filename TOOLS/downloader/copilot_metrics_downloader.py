@@ -43,7 +43,7 @@ class CopilotMetricsDownloader:
         url = f'{self.api_base_url}/enterprises/{self.enterprise}/copilot/metrics/reports/{report_type}/latest'
        
         print(f'Fetching download links from: {url}')
-        response = requests.get(url, headers=self.headers)
+        response = requests.get(url, headers=self.headers, timeout=30)
         response.raise_for_status()
        
         data = response.json()
@@ -61,7 +61,7 @@ class CopilotMetricsDownloader:
             output_path: Path where to save the file
         """
         print(f'Downloading: {output_path.name}')
-        response = requests.get(url, stream=True)
+        response = requests.get(url, stream=True, timeout=60)
         response.raise_for_status()
        
         with open(output_path, 'wb') as f:
@@ -70,13 +70,13 @@ class CopilotMetricsDownloader:
        
         print(f'  Saved: {output_path} ({output_path.stat().st_size} bytes)')
    
-    def download_all_files(self, download_links, output_dir='APP/data/raw/', report_type='enterprise'):
+    def download_all_files(self, download_links, output_dir='copilot_metrics_data', report_type='enterprise'):
         """
         Download all files from the download links
        
         Args:
             download_links: List of URLs to download
-            output_dir: Directory to save files (default: APP/data/raw/)
+            output_dir: Directory to save files (default: copilot_metrics_data)
             report_type: Type of report for filename prefix
         """
         output_path = Path(output_dir)
@@ -97,7 +97,7 @@ class CopilotMetricsDownloader:
         print(f'\nAll files downloaded successfully to: {output_path.absolute()}')
         return output_path
    
-    def run(self, report_types=['enterprise-28-day', 'users-28-day'], output_dir='APP/data/raw/'):
+    def run(self, report_types=None, output_dir='APP/data/raw'):
         """
         Execute the complete download process for multiple report types
        
@@ -106,6 +106,9 @@ class CopilotMetricsDownloader:
             output_dir: Directory to save downloaded files
         """
         print('=== GitHub Copilot Metrics Downloader ===\n')
+       
+        if report_types is None:
+            report_types = ['enterprise-28-day', 'users-28-day']
        
         all_metadata = []
        
@@ -171,12 +174,8 @@ def main():
     # Download both enterprise and user reports
     report_types = ['enterprise-28-day', 'users-28-day']
    
-    try:
-        output_dir = os.getenv('RAW_DATA_DIR', 'APP/data/raw')
-        downloader.run(report_types=report_types, output_dir=output_dir)
-    except Exception as e:
-        print(f'\nError: {e}')
-        sys.exit(1)
+    output_dir = os.getenv('RAW_DATA_DIR', 'APP/data/raw')
+    downloader.run(report_types=report_types, output_dir=output_dir)
  
 if __name__ == '__main__':
     main()

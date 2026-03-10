@@ -1,0 +1,17 @@
+{
+  "name": "server",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch index.js",
+    "start": "node index.js",
+    "test": "node --test test/**/*.test.js",
+    "ingest:raw": "node scripts/ingest-raw.js",
+    "ingest:normalize": "node scripts/normalize.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.0",
+    "mongodb": "^6.12.0"
+  }
+}
